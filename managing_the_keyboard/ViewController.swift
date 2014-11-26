@@ -8,8 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var output: UILabel!
+    
+    
+    @IBAction func button(sender: AnyObject) {
+        
+        output.text = textField.text
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +32,20 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        
+        self.view.endEditing(true)
+        //close down keyboard by pressing anywhere outside textfield
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        // close down the keyboard by pressing return
+        return true
+    }
+    
+    
 
 }
 
